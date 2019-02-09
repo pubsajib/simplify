@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>{{ env('APP_NAME') }}</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-  </head>
-  <body>
-    <div id="app">
-        @include('inc.navbar')
-
+    <head>
+        <meta charset="utf-8">
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
+        <title>{{ env('APP_NAME') }}</title>
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    </head>
+    <body>
+        @if ($errors->any())
+            <ul>
+                @foreach($errors->all() as $errorItem)
+                    <li>{{ $errorItem }}</li>
+                @endforeach
+            </ul>
+        @endif
+        <div id="app">
+            @include('inc.navbar')
             <div class="container">
-                @if(Request::is('/'))
+                @if(Route::currentRouteName() == 'home')
                     @include('inc.showcase')
                 @else
                     <br><br>
                 @endif
+                @include('inc.message')
                 <div class="row">
                   <div class="col-md-8 col-lg-8">
                     @yield('content')
@@ -29,7 +36,7 @@
             <footer id="footer" class="bg-dark text-center">
                 <p>Copyright {!! date('Y') !!} &copy; {{ env('APP_NAME') }}</p>
             </footer>
-    </div>
-    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-  </body>
+        </div>
+        <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    </body>
 </html>

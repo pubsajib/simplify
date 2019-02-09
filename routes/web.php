@@ -1,5 +1,7 @@
 <?php
-Route::get('/', function () { return view('home'); });
-Route::get('/about', function () { return view('about'); });
-Route::get('/contact', function () { return view('contact'); });
-Route::post('/contact/submit', 'MessagesController@submit');
+Route::get('/', 'PageController@index')->name('home');
+Route::get('/home', 'PageController@index')->name('home');
+Route::get('/about', 'PageController@about')->name('about');
+Route::resource('contact', 'MessageController');
+Route::get('/messages', 'MessageController@messages')->name('messages');
+Auth::routes();
