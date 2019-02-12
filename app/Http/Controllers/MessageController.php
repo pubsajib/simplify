@@ -32,7 +32,7 @@ class MessageController extends Controller {
         $message->message = $request->msg;
         $message->save();
         
-        // Mail::to('someone@gmail')->send(new MessageNotification);
+        Mail::to('someone@gmail')->queue(new MessageNotification);
 
         Session::flush('success', 'Message sent successfully.');
         return redirect()->route('home');
