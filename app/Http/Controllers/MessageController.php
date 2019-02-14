@@ -33,8 +33,8 @@ class MessageController extends Controller {
         $message->save();
         
         Mail::to('someone@gmail')->queue(new MessageNotification);
-
-        Session::flush('success', 'Message sent successfully.');
+        flash('Welcome Aboard!')->important()->success(); 
+        // Session::flush('success', 'Message sent successfully.');
         return redirect()->route('home');
     }
     public function show(Message $message, $id) {

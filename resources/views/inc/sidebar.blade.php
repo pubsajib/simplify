@@ -6,7 +6,7 @@
 	<div class="bg-secondary rounded">
 		<h3>Next List</h3>
 		<ul class="list-unstyled">
-			<li>Send email via event</li>
+			<li>Send email in queue</li>
 		</ul>
 	</div>
 	<div class="bg-secondary rounded">

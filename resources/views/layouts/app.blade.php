@@ -22,7 +22,11 @@
                 @else
                     <br><br>
                 @endif
-                @include('inc.message')
+                <div class="row">
+                    <div class="col-md-12">
+                        @include('flash::message')
+                    </div>
+                </div>
                 <div class="row">
                   <div class="col-md-8 col-lg-8">
                     @yield('content')
@@ -38,5 +42,9 @@
             </footer>
         </div>
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+        <script>
+            $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+            $('#flash-overlay-modal').modal();
+        </script>
     </body>
 </html>
